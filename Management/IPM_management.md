@@ -96,12 +96,16 @@ chown -R user:user /
         - processid, activity, starttime은 빈칸 X
         - timestamp 형식은 starttime 호환 X
         - 컬럼이름의 .이 들어가면 안된다.
+        - IPM에서는 파일의 맨 밑줄을 공백으로 인식하기 때문에 파일 업로드 시 맨 밑줄을 공백줄로 둔 상태에서 업로드한다.
     - error: 발견한 상황만 기재, 다른 문제일수도 있다.
         - Invalid csv field {0}: TEXT 문자열 길이가 255자를 넘어간 경우
         - Generic error: 컬럼명이 예약어를 쓰고 있는 경우
         - Case id...: processid값이 빈칸
         - starttime...: starttime 형식 or 빈칸
         - %Y-%m-%d %H:%M:%S.%f 형식을 사용하여 '2025-03-11 15:04:00'형식 날짜를 구문 분석할 수 없음: 2025-03-11 15:04:00 값을 %Y-%m-%d %H:%M:%S.%f 형식에 맞지 않아서 발생
+    - 중복된 데이터
+      - Eventlog: 중복데이터가 있어도 업로드 가능, 중복된 데이터가 두 개로 잡혀서 보인다?
+      - 오브젝트테이블: 파일내에서 중복데이터가 있으면 업로드 불가능, 다른 파일에 중복데이터가 있으면 업로드 가능
 
 
 - Process > Model
@@ -109,6 +113,9 @@ chown -R user:user /
     - Anonymous: Role을 부여하지 않았을 때 표시
     - Box 클릭 후 show activity statistics > 필드 > compute statistics > 필드에 대한 통계
     - endtime 컬럼 값을 설정하지 않으면 box에 duration 값은 0으로 표시
+  
+  - 선행, 후행
+    - 같은 process id 내에서 시간 순서대로 보여진다.
   
   - BPMN download: Download > Model(BPMN2.0) > Download
 
