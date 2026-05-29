@@ -36,8 +36,27 @@ class SystemJIRAIngestion(BaseIngestion):
             self.total_cnt += len(data)
             chunk = []
             
+        	for i, reocrd in enumerate(data):
+            	filter_record = { 'process_id':record.get('process_id'),...}
+                chunk.append(filter_record)
+                
+            return chunk                
             
         except Exception as e:
             self logger.error(f"[-] Error: {str(e)}", exc_info=True)
     
     def _transform(self, data, file_index=None):
+        try:
+            df_chunk = pd.DataFrame(data)
+            df = pd.DataFrame(index=df_chunk.index)
+            
+            self.process_total_cnt += len(df)
+            
+            return df
+            
+        except Exception as e:
+            self.logger.error(f"[-] Error: {str(e)}", exc_info=True)
+        
+        
+        
+        
