@@ -42,8 +42,7 @@
 
 - **Solution Version:** Latest (최신 버전)
 - **Air-gapped** 
-- **Non-conatianer: IPM?**
-- **Conatianer: BAW, Watsonx Orchestrate**
+- **Conatianer: IPM, BAW, Watsonx Orchestrate**
 
 ## Role
 ```

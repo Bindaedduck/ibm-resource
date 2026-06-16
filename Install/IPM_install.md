@@ -82,6 +82,7 @@
 
 6. PostgreSQL v16 설치
     ```
+    ### RHEL ###
     # v16 스트림 활성화
     sudo dnf module enable postgresql:16 -y
 
@@ -90,9 +91,20 @@
 
     # 확인
     postgres --version
+
+    ### UBUNTU ###
+    # 패키지 목록 업데이트
+    sudo apt-get update -y
+
+    # v16 설치
+    sudo apt-get install -y postgresql-16
+
+    # 확인
+    psql --version
     ```
 7. PostgreSQL 초기화 및 서비스 설정
     ```
+    ### RHEL ###
     # 데이터베이스 초기화 (최초 1회 필수)
     sudo postgresql-setup --initdb
 
@@ -158,6 +170,9 @@
     ```
     # 파이썬 본체, 패키지 관리자(pip), 개발용 라이브러리 설치
     sudo dnf install -y python3.12 python3.12-pip python3.12-devel
+
+    ### UBUNTU ###
+    sudo apt-get install -y python3.12 python3-pip python3.12-dev
     ```
     - <PM_HOME>/bin/environment.conf > CMD_PYTHON 값이 /usr/bin/python3.12인지 확인
 
@@ -165,6 +180,9 @@
     ```
     # Nginx 설치
     sudo dnf install -y nginx
+
+    ### UBUNTU ###
+    sudo apt-get install -y nginx
     ```
 
 12. NGINX 서비스 설정
@@ -191,6 +209,15 @@
     ```
     mv /etc/nginx/conf.d/default.conf /etc/nginx/confd/default_origin.conf
     cp <PM_HOME>/nginx/processmining.conf /etc/nginx/conf.d/default.conf
+
+    ### UBUNTU ###
+    mv /etc/nginx/sites-available/default.conf /etc/nginx/sites-available/default_origin.conf
+    cp <PM_HOME>/nginx/processmining.conf /etc/nginx/sites-available/default.conf
+
+    # 포트 변경
+    # 8080은 IPM 내부적으로 사용하는 포트이므로 해당 포트 사용 X
+    listen 80;
+    listen 443 ssl;
     ```
 
 15. NGINX SSL 구성
@@ -207,6 +234,7 @@
     nginx -T
     systemctl restart nginx
     ```
+    - https://www.ibm.com/docs/en/process-mining/2.1.0?topic=installation-self-certificates#creating-certificates 참조
 
 16. Disable data-derived end-activities
     ```
