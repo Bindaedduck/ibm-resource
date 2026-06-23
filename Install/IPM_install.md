@@ -23,12 +23,12 @@
     wsl -d RHEL
     ```
 
-3. IPM v2.1.0 설치
+3. IPM v2.1.0 작업 폴더 설정
     ```
     # ibmprocessmining-setup-2.1.0_924e3d4.tar.gz 파일 opt폴더에 복사
     cp [ibmprocessmining-setup-2.1.0_924e3d4.tar.gz 파일 경로] /opt
 
-    # IPM 설치
+    # 압축 풀기
     cd /opt
     sudo tar xvf ibmprocessmining-setup-2.1.0_924e3d4.tar.gz 
 
