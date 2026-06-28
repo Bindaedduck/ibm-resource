@@ -159,6 +159,23 @@ chown -R user:user /
 
 <br/>
 
+> Analytics
+- Elastic > style > 행집합 임계값 수값
+  - 500이 최대 임계값(IBM 공식 답변)
+  - /opt/processmining/etc/processmining.conf 파일 수정
+  ```
+  ...
+  engine: {
+
+  defaults: {
+    lockMechanism: "mongo",
+    configurableProcessors: true,
+    widgetRowThreshold: 150, //행집합 임계값
+  ...
+  ```
+
+<br/>
+
 > Project / ProcessApp 역할
 - Project: 설계/분석 -> 설계도
 
